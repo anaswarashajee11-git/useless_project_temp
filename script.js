@@ -1358,76 +1358,101 @@ renderer.domElement.addEventListener(
 
 
 /* =========================================================
-   SCROLL MOVEMENT
+   SCROLL MOVEMENT — SMOOTH & LIMITED
 ========================================================= */
+
+let targetCameraZ = camera.position.z;
 
 renderer.domElement.addEventListener(
     "wheel",
-    function(e) {
+    function (e) {
 
-        const direction =
+        e.preventDefault();
+
+        /*
+           Smaller movement so scrolling
+           does NOT feel like zooming.
+        */
+
+        const moveAmount =
             e.deltaY > 0
-                ? 1
-                : -1;
+                ? 3
+                : -3;
 
-        const speed =
-            1.7 * direction;
-
-
-        const forwardX =
-            Math.sin(yaw);
-
-        const forwardZ =
-            -Math.cos(yaw);
+        targetCameraZ += moveAmount;
 
 
-        camera.position.x +=
-            forwardX * speed;
+        /*
+           LIMIT HOW FAR THE CAMERA CAN MOVE.
 
-        camera.position.z +=
-            forwardZ * speed;
+           This prevents the camera from
+           flying through the cemetery or
+           getting ridiculously close.
+        */
 
-
-        camera.position.x =
+        targetCameraZ =
             Math.max(
-                -55,
+                -45,
                 Math.min(
-                    55,
-                    camera.position.x
+                    72,
+                    targetCameraZ
                 )
             );
 
-
-        camera.position.z =
-            Math.max(
-                -60,
-                Math.min(
-                    80,
-                    camera.position.z
-                )
-            );
-
-
-        const welcome =
-            document.getElementById(
-                "welcome"
-            );
-
-
-        if (welcome) {
-
-            welcome.style.opacity =
-                camera.position.z < 64
-                    ? "0"
-                    : "1";
-        }
     },
     {
-        passive: true
+        passive: false
     }
 );
 
 
+/* =========================================================
+   SMOOTH CAMERA MOVEMENT
+========================================================= */
+
+function updateScrollMovement() {
+
+    camera.position.z +=
+        (
+            targetCameraZ -
+            camera.position.z
+        ) * 0.08;
+
+
+    /*
+       Keep camera height stable.
+    */
+
+    camera.position.y +=
+        (
+            6 -
+            camera.position.y
+        ) * 0.08;
+
+
+    /*
+       Hide welcome screen once
+       the player approaches.
+    */
+
+    const welcome =
+        document.getElementById(
+            "welcome"
+        );
+
+
+    if (welcome) {
+
+        const distance =
+            camera.position.z;
+
+
+        welcome.style.opacity =
+            distance < 64
+                ? "0"
+                : "1";
+    }
+}
 /* =========================================================
    CAMERA UPDATE
 ========================================================= */
@@ -2463,6 +2488,7 @@ function animate() {
         animate
     );
 
+    updateScrollMovement();
 
     updateCamera();
 
