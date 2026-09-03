@@ -1,1 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CTRL + Z CEMETARY</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- THREE.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- ORBIT CONTROLS -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+</head>
+
+<body>
+
+    <!-- TOP HEADER -->
+
+    <header>
+
+        <div class="logo">
+            ⚰ CTRL + Z CEMETARY
+        </div>
+
+        <div class="subtitle">
+            WHERE DELETED FILES COME TO REST
+        </div>
+
+        <label class="upload-button">
+
+            🪦 BURY A FILE
+
+            <input
+                type="file"
+                id="fileInput"
+                hidden
+            >
+
+        </label>
+
+        <div id="graveCount">
+            Files buried: 0
+        </div>
+
+    </header>
+
+
+    <!-- 3D SCENE -->
+
+    <main id="scene"></main>
+
+
+    <!-- FILE INFORMATION -->
+
+    <div
+        id="infoPanel"
+        class="info-panel"
+    ></div>
+
+
+    <!-- BOTTOM INSTRUCTIONS -->
+
+    <div class="instructions">
+
+        <span>🖱 Drag = Look Around</span>
+
+        <span>🔍 Scroll = Zoom</span>
+
+        <span>🚪 Approach Gate = Open</span>
+
+        <span>⚰ Click Grave = Details</span>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
