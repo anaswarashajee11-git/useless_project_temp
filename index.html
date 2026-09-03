@@ -8,15 +8,43 @@
 </head>
 <body>
 
- 
+  <!-- ===================== PREMIUM GATE (3D GAME INTRO) ===================== -->
   <div id="gate-screen">
+    <div class="sky"></div>
     <div class="stars"></div>
-    <div class="fog"></div>
     <div class="moon"></div>
 
-    <!-- Two swinging gate doors -->
-    <div class="gate-door gate-door-left" id="doorLeft"></div>
-    <div class="gate-door gate-door-right" id="doorRight"></div>
+    <!-- Distant graveyard skyline, revealed as the gate opens -->
+    <div class="horizon-layer">
+      <div class="hills"></div>
+      <div class="silhouette-grave sg1"></div>
+      <div class="silhouette-grave sg2"></div>
+      <div class="silhouette-grave sg3 cross"></div>
+      <div class="silhouette-grave sg4"></div>
+      <div class="silhouette-grave sg5 cross"></div>
+      <div class="silhouette-grave sg6"></div>
+      <div class="dead-tree">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="fog fog-back"></div>
+
+    <!-- Stone gate posts framing the doors -->
+    <div class="gate-post post-left"><div class="lantern"><i></i></div></div>
+    <div class="gate-post post-right"><div class="lantern"><i></i></div></div>
+
+    <!-- Two swinging gate doors (3D hinge rotation) -->
+    <div class="gate-doors">
+      <div class="gate-door gate-door-left" id="doorLeft"><div class="door-ring"></div></div>
+      <div class="gate-door gate-door-right" id="doorRight"><div class="door-ring"></div></div>
+    </div>
+
+    <div class="fog fog-front"></div>
+
+    <div class="fireflies">
+      <i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
 
     <div class="gate-content" id="gateContent">
       <div class="crest">⌘</div>
