@@ -1,8 +1,3 @@
-/* =========================================================
-   CTRL + Z DIGITAL CEMETERY
-   COMPLETE SCRIPT
-========================================================= */
-
 if (typeof THREE === "undefined") {
     document.body.innerHTML += `
         <div style="
