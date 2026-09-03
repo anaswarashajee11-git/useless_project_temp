@@ -1,751 +1,578 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html,
 body {
-
-    margin: 0;
-    padding: 0;
-
     width: 100%;
     height: 100%;
-
     overflow: hidden;
-
-    background: #020204;
-
-    color: white;
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
+    background: #020207;
+    font-family: Georgia, "Times New Roman", serif;
+    color: #f4ead2;
 }
 
 
-/* =========================================
+/* ==========================================
    3D SCENE
-========================================= */
+========================================== */
 
 #scene {
-
     position: fixed;
-
     inset: 0;
-
     width: 100%;
     height: 100%;
-
     z-index: 1;
-
 }
 
 
-/* =========================================
+/* ==========================================
    BRAND
-========================================= */
+========================================== */
 
 .brand {
-
     position: fixed;
+    top: 30px;
+    left: 35px;
 
-    top: 28px;
-    left: 32px;
+    display: flex;
+    align-items: center;
 
     z-index: 20;
 
-    display: flex;
-
-    gap: 12px;
-
-    pointer-events: none;
-
     text-shadow:
-        0 2px 15px black;
+        0 2px 15px rgba(0, 0, 0, 0.9);
 }
 
-.brand-icon {
+.brand-symbol {
+    font-size: 38px;
+    color: #d4af55;
 
-    color: #c5a15d;
+    margin-right: 14px;
 
-    font-size: 25px;
+    text-shadow:
+        0 0 15px rgba(212, 175, 85, 0.4);
 }
 
 .brand-main {
-
-    color: #eeeeee;
-
-    font-size: 17px;
-
-    font-weight: bold;
-
-    letter-spacing: 4px;
+    font-size: 14px;
+    letter-spacing: 5px;
+    color: #d5b96b;
 }
 
-.brand-name {
-
-    margin-top: 3px;
-
-    color: #c5a15d;
-
-    font-size: 13px;
-
+.brand-title {
+    font-size: 23px;
     letter-spacing: 4px;
+    font-weight: bold;
 }
 
 .brand-subtitle {
-
-    margin-top: 5px;
-
-    color: #999;
+    margin-top: 4px;
 
     font-size: 11px;
+    letter-spacing: 1px;
 
-    font-style: italic;
+    color: #9e9aa2;
 }
 
 
-/* =========================================
+/* ==========================================
    TOP RIGHT
-========================================= */
+========================================== */
 
 .top-right {
-
     position: fixed;
 
-    top: 25px;
-    right: 30px;
+    top: 30px;
+    right: 35px;
 
     z-index: 30;
 
     display: flex;
-
     align-items: center;
+    gap: 20px;
+}
 
-    gap: 12px;
+#fileInput {
+    display: none;
 }
 
 .bury-button {
+    display: inline-block;
 
-    padding: 13px 18px;
+    padding: 13px 21px;
+
+    border: 1px solid rgba(212, 175, 85, 0.7);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(38, 31, 42, 0.95),
+            rgba(12, 10, 15, 0.95)
+        );
+
+    color: #e0c578;
+
+    font-size: 11px;
+    letter-spacing: 2px;
 
     cursor: pointer;
 
-    border:
-        1px solid #a48348;
-
-    background:
-        linear-gradient(
-            180deg,
-            #1a151b,
-            #09070b
-        );
-
-    color: #dfc27e;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 11px;
-
-    font-weight: bold;
-
-    letter-spacing: 2px;
-
-    transition: .25s;
+    transition: 0.3s;
 
     box-shadow:
-        0 0 25px rgba(0,0,0,.6);
+        0 5px 25px rgba(0, 0, 0, 0.5);
 }
 
 .bury-button:hover {
+    background: #b99543;
 
-    border-color: #e0bd70;
+    color: #100d12;
 
-    background: #241c27;
+    transform: translateY(-2px);
 
     box-shadow:
-        0 0 25px rgba(190,150,70,.2);
+        0 8px 30px rgba(212, 175, 85, 0.2);
 }
 
 .counter {
+    padding: 11px 16px;
 
-    padding: 12px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
 
     background:
-        rgba(4,4,7,.85);
+        rgba(10, 9, 14, 0.75);
 
-    border:
-        1px solid rgba(255,255,255,.12);
+    backdrop-filter: blur(8px);
 
-    color: #999;
+    font-size: 12px;
 
-    font-family: Arial, sans-serif;
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
-
-    backdrop-filter: blur(10px);
+    color: #b9b4be;
 }
 
 .counter span {
-
-    color: #d7b36b;
-
+    color: #d7b85d;
     font-weight: bold;
 }
 
 
-/* =========================================
+/* ==========================================
    CENTER WELCOME
-========================================= */
+========================================== */
 
 #welcome {
-
     position: fixed;
 
     left: 50%;
-    bottom: 108px;
+    top: 57%;
 
-    transform:
-        translateX(-50%);
-
-    z-index: 15;
+    transform: translate(-50%, -50%);
 
     text-align: center;
 
+    z-index: 15;
+
     pointer-events: none;
 
-    transition:
-        opacity .7s,
-        transform .7s;
-}
+    text-shadow:
+        0 3px 20px #000,
+        0 0 30px #000;
 
-#welcome.hidden {
-
-    opacity: 0;
-
-    transform:
-        translate(-50%, 25px);
+    transition: opacity 0.8s;
 }
 
 .welcome-small {
-
-    color: #c7a35d;
-
-    font-size: 12px;
+    font-size: 14px;
 
     letter-spacing: 9px;
+
+    color: #d0ad58;
+
+    margin-bottom: 5px;
 }
 
 .welcome-title {
-
-    margin-top: 4px;
-
-    color: #f0eadf;
-
-    font-size: 38px;
+    font-size: 46px;
 
     letter-spacing: 12px;
 
-    text-shadow:
-        0 0 30px rgba(255,255,255,.1);
+    font-weight: bold;
+
+    color: #eee4cf;
 }
 
-.gold-line {
-
-    width: 180px;
-
+.welcome-line {
+    width: 90px;
     height: 1px;
 
-    margin: 12px auto;
+    background: #b99850;
 
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #a58245,
-            transparent
-        );
+    margin: 14px auto;
 }
 
-.welcome-text {
+.welcome-subtitle {
+    font-size: 13px;
 
-    color: #999;
+    color: #aaa5ae;
 
-    font-size: 12px;
-
-    font-style: italic;
+    letter-spacing: 1px;
 }
 
 .approach {
+    margin-top: 22px;
 
-    margin-top: 17px;
-
-    color: #c6a45f;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 9px;
+    font-size: 11px;
 
     letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #c6a85e;
 }
 
 
-/* =========================================
-   MEMORIAL
-========================================= */
+/* ==========================================
+   MEMORIAL PANEL
+========================================== */
 
 #memorialPanel {
-
     position: fixed;
 
     top: 0;
-    right: 0;
+    right: -390px;
 
-    width: 380px;
+    width: 370px;
     height: 100%;
 
-    z-index: 50;
-
-    padding:
-        75px
-        35px
-        35px;
+    padding: 55px 30px;
 
     background:
         linear-gradient(
-            90deg,
-            rgba(4,4,7,.5),
-            rgba(7,5,10,.98)
+            135deg,
+            rgba(18, 14, 23, 0.98),
+            rgba(5, 5, 9, 0.98)
         );
 
-    border-left:
-        1px solid rgba(180,140,70,.25);
+    border-left: 1px solid rgba(211, 175, 83, 0.35);
 
-    backdrop-filter:
-        blur(15px);
+    z-index: 100;
 
-    transform:
-        translateX(100%);
+    transition: right 0.5s ease;
 
-    transition:
-        transform .5s ease;
+    box-shadow:
+        -10px 0 50px rgba(0, 0, 0, 0.7);
 
     overflow-y: auto;
 }
 
 #memorialPanel.open {
-
-    transform:
-        translateX(0);
+    right: 0;
 }
 
-.close-button {
-
+#closeMemorial,
+#closeVisitorPanel {
     position: absolute;
 
-    top: 20px;
-    right: 22px;
+    top: 18px;
+    right: 20px;
 
-    width: 35px;
-    height: 35px;
+    background: none;
 
-    background: transparent;
+    border: none;
 
-    border:
-        1px solid #555;
+    color: #b8a36c;
 
-    color: #ddd;
-
-    font-size: 24px;
+    font-size: 30px;
 
     cursor: pointer;
 }
 
-.memorial-heading {
+#memorialContent h2 {
+    color: #d4b25e;
 
-    color: #c7a45f;
+    font-size: 25px;
 
-    font-family: Arial, sans-serif;
-
-    font-size: 10px;
-
-    letter-spacing: 4px;
-
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
-.memorial-name {
-
-    color: #eee;
-
-    font-size: 24px;
-
-    line-height: 1.3;
+#memorialContent h3 {
+    color: #eee5d2;
 
     word-break: break-word;
 
-    margin-bottom: 25px;
+    margin-bottom: 18px;
 }
 
-.memorial-row {
+#memorialContent p {
+    color: #a9a4ad;
 
-    padding: 13px 0;
+    font-size: 13px;
 
-    border-bottom:
-        1px solid rgba(255,255,255,.08);
+    line-height: 1.8;
 
-    color: #999;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
 
-    font-family: Arial, sans-serif;
-
-    font-size: 12px;
-
-    line-height: 1.5;
+    padding: 8px 0;
 }
 
-.memorial-row strong {
-
-    display: block;
-
-    color: #ddd;
-
-    font-size: 10px;
-
-    letter-spacing: 2px;
-
-    margin-bottom: 4px;
-}
-
-.cause {
-
-    color: #c7a35f;
-
-    font-style: italic;
-}
-
-.memory-button {
-
+.visitor-open {
     width: 100%;
 
-    margin-top: 28px;
+    margin-top: 25px;
 
-    padding: 14px;
+    padding: 13px;
 
-    background: #171018;
+    background: #17121c;
 
-    border:
-        1px solid #8a693c;
+    border: 1px solid #8e7337;
 
-    color: #d4b16a;
+    color: #d6b45b;
 
     cursor: pointer;
-
-    letter-spacing: 2px;
 }
 
 
-/* =========================================
+/* ==========================================
    VISITOR PANEL
-========================================= */
+========================================== */
 
 #visitorPanel {
-
     position: fixed;
 
     left: 50%;
     top: 50%;
 
-    width: 430px;
+    transform:
+        translate(-50%, -50%)
+        scale(0.95);
 
+    width: 430px;
     max-width: 90vw;
 
-    max-height: 85vh;
-
-    z-index: 70;
+    max-height: 80vh;
 
     padding: 35px;
 
     background:
-        linear-gradient(
-            145deg,
-            #16101a,
-            #050507
-        );
+        rgba(10, 8, 14, 0.97);
 
-    border:
-        1px solid #765b34;
+    border: 1px solid rgba(212, 175, 85, 0.4);
 
-    box-shadow:
-        0 30px 100px #000;
-
-    transform:
-        translate(-50%, -45%)
-        scale(.95);
+    z-index: 150;
 
     opacity: 0;
 
-    pointer-events: none;
+    visibility: hidden;
 
-    transition: .35s;
+    transition: 0.3s;
+
+    box-shadow:
+        0 20px 80px rgba(0, 0, 0, 0.8);
 
     overflow-y: auto;
 }
 
 #visitorPanel.open {
-
     opacity: 1;
 
-    pointer-events: auto;
+    visibility: visible;
 
     transform:
         translate(-50%, -50%)
         scale(1);
 }
 
-.visitor-heading {
+#visitorPanel h2 {
+    color: #d8b85e;
 
-    text-align: center;
+    letter-spacing: 2px;
 
-    color: #d0ad65;
-
-    font-size: 20px;
-
-    letter-spacing: 5px;
+    margin-bottom: 10px;
 }
 
-.selected-name {
+#selectedTombName {
+    color: #eee;
 
-    margin-top: 10px;
+    font-size: 15px;
 
-    margin-bottom: 25px;
-
-    text-align: center;
-
-    color: #999;
-
-    font-size: 12px;
-
-    word-break: break-word;
+    margin-bottom: 20px;
 }
 
 .rose-area {
+    display: flex;
 
-    text-align: center;
+    justify-content: space-between;
 
-    margin-bottom: 25px;
-}
+    align-items: center;
 
-#roseCount {
+    margin-bottom: 20px;
 
-    margin-bottom: 12px;
-
-    color: #d5b16b;
-
-    font-size: 22px;
+    color: #aaa;
 }
 
 #roseButton,
 #commentButton {
+    padding: 10px 15px;
 
-    width: 100%;
+    background: #211823;
 
-    padding: 12px;
+    border: 1px solid #8c7138;
 
-    background: #100b12;
-
-    border:
-        1px solid #765b36;
-
-    color: #d4b06a;
+    color: #d6b55e;
 
     cursor: pointer;
-
-    letter-spacing: 2px;
-
-    transition: .2s;
 }
 
-#roseButton:hover,
-#commentButton:hover {
-
-    background: #241827;
-}
-
-#commentInput {
-
+.comment-area textarea {
     width: 100%;
 
-    height: 100px;
+    height: 80px;
 
-    margin-bottom: 10px;
+    resize: none;
 
     padding: 12px;
 
-    resize: vertical;
+    background: #0c0a0f;
 
-    background: #08080b;
-
-    border:
-        1px solid #444;
-
-    outline: none;
+    border: 1px solid #37313c;
 
     color: white;
 
-    font-family: Georgia, serif;
+    font-family: inherit;
+
+    margin-bottom: 10px;
 }
 
 #comments {
-
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .comment {
-
-    margin-bottom: 8px;
-
     padding: 12px;
 
-    background:
-        rgba(255,255,255,.04);
+    margin-bottom: 10px;
 
-    border-left:
-        2px solid #80633a;
+    background: rgba(255,255,255,0.03);
+
+    border-left: 2px solid #8f7137;
 
     color: #aaa;
 
-    font-size: 12px;
+    font-size: 13px;
 
     line-height: 1.5;
 }
 
 
-/* =========================================
+/* ==========================================
    VISITOR BUTTON
-========================================= */
+========================================== */
 
 #visitorButton {
-
     position: fixed;
 
-    left: 25px;
-    bottom: 62px;
+    left: 28px;
+    bottom: 65px;
 
     z-index: 30;
 
     padding: 12px 18px;
 
     background:
-        rgba(5,5,8,.85);
+        rgba(10, 9, 14, 0.8);
 
-    border:
-        1px solid rgba(190,150,70,.45);
+    border: 1px solid rgba(212, 175, 85, 0.4);
 
-    color: #d0ae69;
+    color: #cdb05d;
 
     cursor: pointer;
 
-    font-family: Arial, sans-serif;
-
-    font-size: 10px;
+    font-size: 11px;
 
     letter-spacing: 2px;
 }
 
 
-/* =========================================
+/* ==========================================
    INSTRUCTIONS
-========================================= */
+========================================== */
 
 .instructions {
-
     position: fixed;
 
+    bottom: 20px;
     left: 50%;
-    bottom: 17px;
 
-    transform:
-        translateX(-50%);
+    transform: translateX(-50%);
 
-    z-index: 30;
+    z-index: 25;
 
     display: flex;
 
     gap: 25px;
 
-    padding: 11px 22px;
+    padding: 11px 20px;
 
-    border:
-        1px solid rgba(255,255,255,.12);
-
-    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.1);
 
     background:
-        rgba(4,4,7,.85);
+        rgba(8, 7, 12, 0.72);
 
-    backdrop-filter:
-        blur(10px);
+    backdrop-filter: blur(8px);
 
-    color: #999;
+    color: #aaa6ad;
 
-    font-family: Arial, sans-serif;
-
-    font-size: 8px;
-
-    letter-spacing: 1.5px;
+    font-size: 11px;
 
     white-space: nowrap;
 }
 
 
-/* =========================================
+/* ==========================================
    MOBILE
-========================================= */
+========================================== */
 
-@media(max-width:700px) {
+@media (max-width: 700px) {
 
     .brand {
-
-        left: 15px;
         top: 15px;
+        left: 15px;
+    }
+
+    .brand-title {
+        font-size: 17px;
     }
 
     .brand-subtitle {
-
         display: none;
     }
 
     .top-right {
-
-        right: 15px;
         top: 15px;
+        right: 15px;
 
         flex-direction: column;
+
+        gap: 7px;
 
         align-items: flex-end;
     }
 
     .welcome-title {
-
-        font-size: 25px;
+        font-size: 30px;
 
         letter-spacing: 7px;
     }
 
     .instructions {
-
-        width: 95%;
-
         gap: 8px;
 
-        font-size: 7px;
+        font-size: 9px;
     }
 
-    #memorialPanel {
-
-        width: 100%;
+    #visitorButton {
+        bottom: 55px;
     }
 }
