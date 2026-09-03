@@ -22,9 +22,7 @@ if (typeof THREE === "undefined") {
 }
 
 
-// ======================================================
-// BASIC SETUP
-// ======================================================
+
 
 const sceneContainer =
     document.getElementById("scene");
@@ -42,10 +40,6 @@ scene.fog =
     );
 
 
-// ======================================================
-// CAMERA
-// ======================================================
-
 const camera =
     new THREE.PerspectiveCamera(
         60,
@@ -61,9 +55,7 @@ camera.position.set(
 );
 
 
-// ======================================================
-// RENDERER
-// ======================================================
+
 
 const renderer =
     new THREE.WebGLRenderer({
@@ -88,9 +80,7 @@ renderer.shadowMap.type =
 sceneContainer.appendChild(renderer.domElement);
 
 
-// ======================================================
-// LIGHTING
-// ======================================================
+
 
 const ambientLight =
     new THREE.AmbientLight(
@@ -118,9 +108,7 @@ moonLight.castShadow = true;
 scene.add(moonLight);
 
 
-// ======================================================
-// MOON
-// ======================================================
+
 
 const moon =
     new THREE.Mesh(
@@ -167,9 +155,6 @@ moonGlow.position.copy(
 scene.add(moonGlow);
 
 
-// ======================================================
-// STARS
-// ======================================================
 
 const starGeometry =
     new THREE.BufferGeometry();
@@ -219,9 +204,7 @@ const stars =
 scene.add(stars);
 
 
-// ======================================================
-// GROUND
-// ======================================================
+
 
 const groundMaterial =
     new THREE.MeshStandardMaterial({
@@ -248,9 +231,7 @@ ground.receiveShadow = true;
 scene.add(ground);
 
 
-// ======================================================
-// PURPLE STONE PATH
-// ======================================================
+
 
 const pathMaterial =
     new THREE.MeshStandardMaterial({
