@@ -3,11 +3,15 @@
 :root {
   --bg-dark: #0a0e14;
   --bg-darker: #05070a;
+  --bg-void: #030405;
   --fog: rgba(180, 190, 210, 0.06);
-  --stone: #4a4e5a;
-  --stone-light: #6b7080;
+  --stone: #6b6f7c;
+  --stone-shadow: #2c2e36;
+  --stone-light: #8a8f9c;
+  --moss: #3d5a3f;
   --gold: #d4af37;
   --gold-soft: #e8cf7a;
+  --bone: #e9e4d6;
   --text: #e6e6ea;
   --text-dim: #9a9ea8;
   --danger: #c0392b;
@@ -23,21 +27,29 @@ body {
 
 .hidden { display: none !important; }
 
-/* ===================== GATE SCREEN ===================== */
+/* ===================== GATE SCREEN (layered 3D scene) ===================== */
 #gate-screen {
   position: relative;
   height: 100vh;
   width: 100%;
   overflow: hidden;
-  background: radial-gradient(ellipse at 50% 30%, #131826 0%, #05070a 70%);
+  perspective: 1800px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.sky {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(ellipse at 50% 22%, #182034 0%, #0a0e18 45%, var(--bg-void) 85%);
+}
+
 .stars {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background-image:
     radial-gradient(2px 2px at 20px 30px, white, transparent),
     radial-gradient(1.5px 1.5px at 120px 80px, white, transparent),
@@ -64,6 +76,7 @@ body {
   position: absolute;
   top: 8%;
   right: 12%;
+  z-index: 1;
   width: 90px;
   height: 90px;
   background: radial-gradient(circle at 35% 35%, #fdf6e3, #cfc9a8 70%);
@@ -71,15 +84,92 @@ body {
   box-shadow: 0 0 60px 20px rgba(253, 246, 227, 0.15);
 }
 
+/* ---- Distant graveyard skyline, revealed once the gate opens ---- */
+.horizon-layer {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hills {
+  position: absolute;
+  bottom: 0;
+  left: -10%;
+  width: 120%;
+  height: 26%;
+  background: linear-gradient(180deg, #10131b, #05070a);
+  clip-path: polygon(
+    0% 60%, 8% 45%, 18% 55%, 30% 35%, 42% 50%,
+    55% 30%, 68% 48%, 80% 38%, 92% 52%, 100% 40%,
+    100% 100%, 0% 100%
+  );
+}
+
+.silhouette-grave {
+  position: absolute;
+  bottom: 3%;
+  width: 26px;
+  height: 34px;
+  background: #0c0e14;
+  border-radius: 13px 13px 2px 2px;
+}
+.sg1 { left: 6%; height: 28px; }
+.sg2 { left: 14%; height: 40px; }
+.sg3 { left: 24%; height: 32px; }
+.sg4 { left: 78%; height: 36px; }
+.sg5 { left: 87%; height: 26px; }
+.sg6 { left: 94%; height: 42px; }
+.silhouette-grave.cross { background: transparent; }
+.silhouette-grave.cross::before,
+.silhouette-grave.cross::after {
+  content: "";
+  position: absolute;
+  background: #0c0e14;
+}
+.silhouette-grave.cross::before { left: 45%; top: 0; width: 4px; height: 100%; }
+.silhouette-grave.cross::after { left: 20%; top: 22%; width: 60%; height: 4px; }
+
+.dead-tree {
+  position: absolute;
+  left: 40%;
+  bottom: 4%;
+  width: 4px;
+  height: 70px;
+  background: #0b0d12;
+}
+.dead-tree span {
+  position: absolute;
+  width: 3px;
+  height: 34px;
+  background: #0b0d12;
+  bottom: 40px;
+  left: 0;
+  transform-origin: bottom center;
+}
+.dead-tree span:nth-child(1) { transform: rotate(-35deg); bottom: 45px; }
+.dead-tree span:nth-child(2) { transform: rotate(28deg); bottom: 30px; height: 28px; }
+.dead-tree span:nth-child(3) { transform: rotate(-12deg); bottom: 55px; height: 22px; }
+
 .fog {
   position: absolute;
   bottom: 0;
   left: -20%;
   width: 140%;
-  height: 40%;
-  background: linear-gradient(to top, var(--fog), transparent);
+  height: 34%;
   filter: blur(10px);
-  animation: drift 18s linear infinite;
+  pointer-events: none;
+}
+.fog-back {
+  z-index: 3;
+  background: linear-gradient(to top, rgba(180, 190, 210, 0.08), transparent);
+  animation: drift 20s linear infinite;
+}
+.fog-front {
+  z-index: 6;
+  height: 18%;
+  background: linear-gradient(to top, rgba(180, 190, 210, 0.1), transparent);
+  animation: drift 13s linear infinite reverse;
 }
 
 @keyframes drift {
@@ -88,18 +178,65 @@ body {
   100% { transform: translateX(0); }
 }
 
-/* ---- Swinging gate doors (game-style intro) ---- */
+/* ---- Stone posts framing the scene ---- */
+.gate-post {
+  position: absolute;
+  top: 6%;
+  bottom: 0;
+  z-index: 4;
+  width: 34px;
+  background: linear-gradient(90deg, #23262f, #40434e 45%, #23262f);
+  box-shadow: 0 0 24px rgba(0,0,0,0.6), inset 0 0 12px rgba(0,0,0,0.5);
+}
+.post-left { left: 1.5%; border-radius: 4px; }
+.post-right { right: 1.5%; border-radius: 4px; }
+
+.lantern {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 26px;
+  background: linear-gradient(180deg, #2c2e36, #17181d);
+  border: 1px solid rgba(212,175,55,0.5);
+  border-radius: 2px;
+}
+.lantern i {
+  position: absolute;
+  inset: 3px;
+  border-radius: 1px;
+  background: radial-gradient(circle, var(--gold-soft), rgba(212,175,55,0.15) 70%, transparent);
+  box-shadow: 0 0 18px 6px rgba(212, 175, 55, 0.35);
+  animation: flicker 3.4s ease-in-out infinite;
+}
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 0.75; }
+  50% { opacity: 0.95; }
+  75% { opacity: 0.65; }
+}
+
+/* ---- Swinging gate doors, 3D hinge rotation ---- */
+.gate-doors {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  transform-style: preserve-3d;
+}
+
 .gate-door {
   position: absolute;
   top: 0;
   bottom: 0;
   width: 50%;
-  z-index: 3;
   background:
     repeating-linear-gradient(90deg, rgba(0,0,0,0.25) 0 2px, transparent 2px 40px),
     linear-gradient(180deg, #2b2f3a, #14161d 60%, #0a0b0f);
   box-shadow: inset 0 0 60px rgba(0,0,0,0.7);
   transition: transform 1.4s cubic-bezier(0.7, 0, 0.3, 1);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
   will-change: transform;
 }
 
@@ -129,26 +266,66 @@ body {
     0 -90px 0 -2px rgba(212,175,55,0.3);
 }
 
+.door-ring {
+  position: absolute;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  border: 3px solid var(--gold);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 10px rgba(212,175,55,0.4);
+}
+
 .gate-door-left {
   left: 0;
-  transform: translateX(0);
+  transform-origin: left center;
   border-right: 2px solid rgba(212,175,55,0.5);
 }
 .gate-door-left::after { right: 4px; }
+.gate-door-left .door-ring { right: 16px; }
 
 .gate-door-right {
   right: 0;
-  transform: translateX(0);
+  transform-origin: right center;
   border-left: 2px solid rgba(212,175,55,0.5);
 }
 .gate-door-right::after { left: 4px; }
+.gate-door-right .door-ring { left: 16px; }
 
-.gate-door-left.open { transform: translateX(-105%); }
-.gate-door-right.open { transform: translateX(105%); }
+.gate-door-left.open { transform: rotateY(-112deg); }
+.gate-door-right.open { transform: rotateY(112deg); }
+
+/* ---- Drifting fireflies for depth ---- */
+.fireflies { position: absolute; inset: 0; z-index: 6; pointer-events: none; }
+.fireflies i {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold-soft);
+  box-shadow: 0 0 8px 3px rgba(232, 207, 122, 0.6);
+  animation: float-up linear infinite;
+  opacity: 0;
+}
+.fireflies i:nth-child(1) { left: 15%; bottom: 10%; animation-duration: 9s; animation-delay: 0s; }
+.fireflies i:nth-child(2) { left: 32%; bottom: 6%; animation-duration: 11s; animation-delay: 2s; }
+.fireflies i:nth-child(3) { left: 50%; bottom: 14%; animation-duration: 8s; animation-delay: 4s; }
+.fireflies i:nth-child(4) { left: 63%; bottom: 8%; animation-duration: 12s; animation-delay: 1s; }
+.fireflies i:nth-child(5) { left: 78%; bottom: 12%; animation-duration: 10s; animation-delay: 3s; }
+.fireflies i:nth-child(6) { left: 88%; bottom: 5%; animation-duration: 13s; animation-delay: 5s; }
+
+@keyframes float-up {
+  0% { transform: translate(0, 0); opacity: 0; }
+  10% { opacity: 0.9; }
+  50% { transform: translate(8px, -60px); opacity: 0.6; }
+  90% { opacity: 0.3; }
+  100% { transform: translate(-6px, -140px); opacity: 0; }
+}
 
 .gate-content {
   position: relative;
-  z-index: 4;
+  z-index: 8;
   padding: 60px 40px;
   border: 2px solid var(--gold);
   border-radius: 12px;
@@ -275,11 +452,12 @@ body {
 
 .grounds {
   max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 30px;
+  margin: 50px auto;
+  padding: 0 30px 30px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 46px 34px;
+  perspective: 1300px;
 }
 
 .empty-msg {
@@ -289,72 +467,150 @@ body {
   font-style: italic;
 }
 
-/* Tombstone card */
+/* ===================== TOMBSTONE CARD ===================== */
 .tombstone {
   position: relative;
-  background: linear-gradient(180deg, #5b5f6c, #40434e);
-  border-radius: 90px 90px 8px 8px;
-  padding: 28px 18px 22px;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255,255,255,0.06), transparent 40%),
+    radial-gradient(circle at 75% 65%, rgba(0,0,0,0.25), transparent 50%),
+    radial-gradient(ellipse at 12% 95%, rgba(61, 90, 63, 0.55), transparent 55%),
+    radial-gradient(ellipse at 90% 90%, rgba(61, 90, 63, 0.4), transparent 50%),
+    linear-gradient(160deg, var(--stone-light) 0%, var(--stone) 45%, var(--stone-shadow) 100%);
+  border-radius: 110px 110px 6px 6px;
+  padding: 40px 18px 24px;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.2);
-  transition: transform 0.2s ease;
-  min-height: 240px;
+  box-shadow:
+    0 14px 26px rgba(0,0,0,0.55),
+    0 2px 0 rgba(255,255,255,0.05) inset,
+    0 -30px 40px -30px rgba(0,0,0,0.5) inset;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transform-style: preserve-3d;
+  min-height: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  border: 1px solid #2c2e36;
+  border: 1px solid #22242b;
 }
+
+.tombstone:nth-child(3n) { transform: rotate(-1.2deg); }
+.tombstone:nth-child(3n+1) { transform: rotate(0.8deg); }
+.tombstone:nth-child(3n+2) { transform: rotate(-0.4deg); }
 
 .tombstone:hover {
-  transform: translateY(-6px) rotate(-1deg);
+  transform: perspective(1300px) rotateX(6deg) translateY(-8px) scale(1.02);
+  box-shadow:
+    0 26px 40px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(212,175,55,0.25),
+    0 -3px 0 rgba(232,207,122,0.25) inset;
 }
 
+/* Carved cross at the crown of the stone */
 .tombstone::before {
   content: "✝";
-  font-size: 20px;
-  color: #2c2e36;
-  margin-bottom: 6px;
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  color: rgba(0,0,0,0.35);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.18);
+}
+
+/* Weathering crack */
+.tombstone::after {
+  content: "";
+  position: absolute;
+  top: 30%;
+  left: 62%;
+  width: 1.5px;
+  height: 46%;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.15));
+  transform: rotate(12deg);
+  opacity: 0.7;
 }
 
 .tombstone-name {
   font-size: 16px;
   font-weight: bold;
-  color: #1c1d22;
+  color: #1c1c22;
   margin-bottom: 6px;
   word-break: break-word;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+  letter-spacing: 0.4px;
 }
 
 .tombstone-dates {
-  font-size: 12px;
+  font-size: 11.5px;
   color: #34363f;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.15);
 }
 
 .tombstone-cause {
   font-size: 12px;
   color: #2a2b32;
   font-style: italic;
-  line-height: 1.4;
+  line-height: 1.45;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.12);
 }
 
+/* Portrait set into an engraved oval plaque */
 .tombstone-thumb {
-  width: 60px;
-  height: 60px;
+  width: 62px;
+  height: 62px;
   object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 10px;
-  border: 2px solid #2c2e36;
+  margin-top: -58px;
+  margin-bottom: 12px;
+  border: 3px solid #17181d;
+  outline: 2px solid rgba(212,175,55,0.55);
+  outline-offset: 2px;
+  box-shadow:
+    0 4px 10px rgba(0,0,0,0.5),
+    inset 0 2px 6px rgba(0,0,0,0.4);
 }
 
+/* Mound of grass at the base with tufts and pebbles */
 .tombstone-grass {
   position: absolute;
-  bottom: -6px;
-  left: 0;
-  right: 0;
-  height: 12px;
-  background: repeating-linear-gradient(90deg, #2e4d2e, #3a5f3a 4px, #2e4d2e 8px);
-  border-radius: 0 0 8px 8px;
+  bottom: -8px;
+  left: -4px;
+  right: -4px;
+  height: 16px;
+  background: linear-gradient(180deg, #2e4d2e, #1c331c);
+  border-radius: 4px 4px 10px 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+
+.tombstone-grass::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 6%;
+  width: 88%;
+  height: 8px;
+  background-image: repeating-linear-gradient(
+    70deg,
+    #3f6a3f 0 2px,
+    transparent 2px 8px
+  );
+  opacity: 0.9;
+}
+
+.tombstone-grass::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 10%;
+  width: 8px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4a4e5a;
+  box-shadow:
+    34px 1px 0 -1px #3c3f4a,
+    68px -1px 0 0 #4a4e5a,
+    22px 2px 0 -2px #34363f;
 }
 
 /* ===================== MODAL ===================== */
@@ -463,8 +719,11 @@ body {
   height: 120px;
   object-fit: cover;
   border-radius: 50%;
-  border: 3px solid var(--gold);
-  margin-bottom: 16px;
+  border: 3px solid #17181d;
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.5);
 }
 
 .view-box h2 { color: var(--gold-soft); margin-bottom: 6px; }
@@ -496,4 +755,11 @@ body {
   .gate-title { font-size: 38px; letter-spacing: 6px; }
   .gate-subtitle { font-size: 16px; letter-spacing: 8px; }
   .row { flex-direction: column; gap: 0; }
+  .gate-post { width: 20px; }
+  .lantern { width: 16px; }
+  .tombstone:hover { transform: translateY(-6px) scale(1.01); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stars, .fog-back, .fog-front, .fireflies i, .lantern i { animation: none !important; }
 }
