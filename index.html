@@ -1,89 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>CTRL + Z CEMETARY</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <!-- THREE.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-    <!-- ORBIT CONTROLS -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ctrl+Z Cemetery — Resting Place of Dead Projects</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- TOP HEADER -->
+  <!-- ===================== PREMIUM GATE (GAME INTRO) ===================== -->
+  <div id="gate-screen">
+    <div class="stars"></div>
+    <div class="fog"></div>
+    <div class="moon"></div>
 
-    <header>
+    <!-- Two swinging gate doors -->
+    <div class="gate-door gate-door-left" id="doorLeft"></div>
+    <div class="gate-door gate-door-right" id="doorRight"></div>
 
-        <div class="logo">
-            ⚰ CTRL + Z CEMETARY
-        </div>
+    <div class="gate-content" id="gateContent">
+      <div class="crest">⌘</div>
+      <h1 class="gate-title">CTRL + Z</h1>
+      <h2 class="gate-subtitle">C E M E T E R Y</h2>
+      <p class="gate-tagline">A Premium Resting Place for Projects That Never Made It</p>
+      <button id="enterBtn" class="enter-btn">⚰ Enter the Grounds</button>
+      <p class="gate-footer">est. whenever you gave up · undo history: full</p>
+    </div>
+  </div>
 
-        <div class="subtitle">
-            WHERE DELETED FILES COME TO REST
-        </div>
+  <!-- ===================== CEMETERY GROUNDS ===================== -->
+  <div id="cemetery-screen" class="hidden">
 
-        <label class="upload-button">
-
-            🪦 BURY A FILE
-
-            <input
-                type="file"
-                id="fileInput"
-                hidden
-            >
-
-        </label>
-
-        <div id="graveCount">
-            Files buried: 0
-        </div>
-
+    <header class="site-header">
+      <div class="header-inner">
+        <h1 class="site-logo">🪦 Ctrl+Z Cemetery</h1>
+        <button id="addGraveBtn" class="add-grave-btn">+ Bury a Project</button>
+      </div>
+      <p class="site-sub">Rest in Pieces, Abandoned Repos.</p>
     </header>
 
+    <main class="grounds" id="grounds">
+      <!-- tombstones injected here by JS -->
+    </main>
 
-    <!-- 3D SCENE -->
+    <p id="emptyMsg" class="empty-msg hidden">The grounds are empty. Every hackathon has to start somewhere — bury your first project. 🕯️</p>
+  </div>
 
-    <main id="scene"></main>
+  <!-- ===================== UPLOAD / BURY MODAL ===================== -->
+  <div id="uploadModal" class="modal hidden">
+    <div class="modal-box">
+      <button id="closeModal" class="close-btn">✕</button>
+      <h2 class="modal-title">⚱ Bury a New Project</h2>
+      <p class="modal-sub">Fill in its final details before it's lowered into the archive.</p>
 
+      <form id="graveForm">
+        <label>Project Name
+          <input type="text" id="pName" placeholder="e.g. TodoApp #47" required>
+        </label>
 
-    <!-- FILE INFORMATION -->
+        <label>Cause of Death
+          <input type="text" id="pCause" placeholder="e.g. Lost motivation at 2am" required>
+        </label>
 
-    <div
-        id="infoPanel"
-        class="info-panel"
-    ></div>
+        <label>End Date
+          <input type="date" id="pDied" required>
+        </label>
 
+        <label>Last Words (epitaph)
+          <textarea id="pEpitaph" rows="3" placeholder="It compiled once. We shall never forget."></textarea>
+        </label>
 
-    <!-- BOTTOM INSTRUCTIONS -->
+        <label>Select File (photo / screenshot)
+          <input type="file" id="pImage" accept="image/*">
+        </label>
+        <img id="imgPreview" class="img-preview hidden" alt="preview">
 
-    <div class="instructions">
-
-        <span>🖱 Drag = Look Around</span>
-
-        <span>🔍 Scroll = Zoom</span>
-
-        <span>🚪 Approach Gate = Open</span>
-
-        <span>⚰ Click Grave = Details</span>
-
+        <button type="submit" class="submit-btn">Lower It Into the Ground ⬇</button>
+      </form>
     </div>
+  </div>
 
+  <!-- ===================== TOMBSTONE DETAIL MODAL ===================== -->
+  <div id="viewModal" class="modal hidden">
+    <div class="modal-box view-box">
+      <button id="closeViewModal" class="close-btn">✕</button>
+      <div id="viewContent"></div>
+      <button id="deleteGraveBtn" class="delete-btn">🕳 Exhume &amp; Delete</button>
+    </div>
+  </div>
 
-    <!-- JAVASCRIPT -->
-
-    <script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
-
 </html>
