@@ -72,48 +72,42 @@ For Software:
 # Screenshots (Add at least 3)
 
 *Add caption explaining what this shows*
-!
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+!ENTRANCE   
+(entrance.png)
+The entrance of the CTRL + Z Digital Cemetery, featuring the interactive double gate, glowing pathway, moonlit night sky, and the cinematic atmosphere of the final resting place for forgotten files.
+!CEMETERY
+(cemetery.png)
+After a file is buried, a new digital tomb appears inside the cemetery with a dramatic notification. The scene shows the newly created tombstones, glowing surroundings, trees, and pathway leading deeper into the cemetery.
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+!TOMP DETAILS
+(tomb%20details.png)
+Clicking a tomb opens its digital memorial, displaying the forgotten file's details while allowing visitors to leave a rose or a personal message in memory of the file.
 
 # Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
 
-For Hardware:
+Select File
+     ↓
+   Delete
+     ↓
+File is "Buried"
+     ↓
+Create New Tomb
+     ↓
+Add Tomb to Graveyard
+     ↓
+Click Tomb
+     ↓
+View File Details
+     ↓
+Leave Message / Rose
 
-# Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
 
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
-
-# Build Photos
-![Components](Add photo of your components here)
-*List out all components shown*
-
-![Build](Add photos of build process here)
-*Explain the build steps*
-
-![Final](Add photo of final product here)
-*Explain the final build*
 
 ### Project Demo
 # Video
 [Add your demo video link here]
 *Explain what the video demonstrates*
 
-# Additional Demos
-[Add any extra demo materials/links]
-
-## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
