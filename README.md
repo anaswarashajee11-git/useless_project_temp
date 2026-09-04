@@ -2,7 +2,7 @@
 
 
 
-# Ctrl + Z - Digital Cemetery 🎯
+# Ctrl + Z - Digital Cemetery ⚰️🌹
 
 
 ## Basic Details
@@ -72,7 +72,7 @@ For Software:
 # Screenshots (Add at least 3)
 
 *Add caption explaining what this shows*
-
+!
 ![Screenshot2](Add screenshot 2 here with proper name)
 *Add caption explaining what this shows*
 
