@@ -70,14 +70,19 @@ For Software:
 
 ENTRANCE   
 (entrance.png)
+
 The entrance of the CTRL + Z Digital Cemetery, featuring the interactive double gate, glowing pathway, moonlit night sky, and the cinematic atmosphere of the final resting place for forgotten files.
 
 CEMETERY
+
 (cemetery.png)
+
 After a file is buried, a new digital tomb appears inside the cemetery with a dramatic notification. The scene shows the newly created tombstones, glowing surroundings, trees, and pathway leading deeper into the cemetery.
 
 TOMP DETAILS
+
 (tomb details.png)
+
 Clicking a tomb opens its digital memorial, displaying the forgotten file's details while allowing visitors to leave a rose or a personal message in memory of the file.
 
 # Diagrams
