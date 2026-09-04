@@ -102,8 +102,11 @@ Leave Message / Rose
 
 ### Project Demo
 # Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
+https://drive.google.com/file/d/1fy9zgn_mV3ySS7dYnltkWJZZW3VE2JbF/view?usp=drivesdk
+
+This video is a quick walkthrough of a website called **CTRL + Z Digital Cemetery**, which gives people a fun, visual way to "bury" old files they don't use anymore.
+
+It starts outside the entrance at night, where the gates open up to a 3D graveyard lit by a full moon. The user clicks a button to pick a file off their computer, and a pop-up confirms that a new tombstone has been added to the field. Clicking on any tombstone opens up a menu where you can view the file name, leave a virtual rose, or type a brief message like "rest in peace." Towards the end, it also shows a visitor counter at the bottom of the screen that tracks how many people are currently browsing the site.
 
 
 ---
