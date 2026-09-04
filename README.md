@@ -2,53 +2,75 @@
 
 
 
-# [Project Name] 🎯
+# Ctrl + Z - Digital Cemetery 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: Nirvan
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Team Lead: Anaswara Shajee - LBS Institute Of Technology For Women
+- Member 2: Aswathi Prem - LBS Institute Of Technology For Women
 
 ### Project Description
-[2-3 lines about what your project does]
+Digital Cemetery is a playful way to give deleted files a proper goodbye. Instead of simply sending them to a boring Trash folder, we give them a final resting place of their own.
+Enter the CTRL + Z Cemetery, choose a file you no longer need, and a tomb is created for it in the graveyard. Each tomb keeps the file’s details, so you can come back later, revisit old files, and remember what you once had. You can even leave a message or a rose as a little farewell. 🌹
+It’s partly a useless project, partly a creative experiment, and maybe even a place to wander around in your free time and revisit the digital things you thought you had forgotten. ⚰️✨
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+Normal file deletion is boring.
+Select file → Delete → Trash → Gone.
+No ceremony. No memories. No roses. No dramatic farewell.
+We decided this clearly needed to be fixed.
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+We asked ourselves a very important question:
+
+“What if deleting a file was unnecessarily dramatic?”
+
+And that's how Digital Graveyard was born.
+
+Instead of letting a file disappear into the boring world of Delete → Trash → Gone, we give it a proper final resting place at the CTRL + Z Cemetery.
+
+🚪 Enter through the cemetery gates.
+⚰️ Give your deleted file its own tomb.
+🔍 Click on the tomb to revisit its details.
+🌹 Leave a rose.
+💬 Write a message.
+👻 Wander around and remember files you probably forgot existed.
+
+Is it useful? Not really.
+Does anyone actually need a cemetery for deleted files? Absolutely not.
+
+And that's exactly why we made it.
+
+It's a small, weird, visual experience that turns one of the most boring things we do on a computer — deleting a file — into something oddly satisfying and fun.
+
+Because if a file has to die...
+
+at least give it a nice tomb. 💀🌹
 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
+- HTML
+- CSS
+- JavaScript
+- GitHub
 
-For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
 
 ### Implementation
 For Software:
 # Installation
-[commands]
+No installation  
 
-# Run
-[commands]
 
 ### Project Documentation
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
+
 *Add caption explaining what this shows*
 
 ![Screenshot2](Add screenshot 2 here with proper name)
